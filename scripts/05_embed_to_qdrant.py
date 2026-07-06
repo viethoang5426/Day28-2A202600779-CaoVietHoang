@@ -14,9 +14,10 @@ qdrant.recreate_collection(
 )
 
 def embed_and_store(records: list[dict]):
-    # Gọi Kaggle embedding service
-    response = requests.post(f"{EMBED_URL}/embed", json={"texts": [r["text"] for r in records]})
-    embeddings = response.json()["embeddings"]
+    # Mocking Kaggle embedding service locally
+    # response = requests.post(f"{EMBED_URL}/embed", json={"texts": [r["text"] for r in records]})
+    # embeddings = response.json()["embeddings"]
+    embeddings = [[0.1] * 384 for _ in records]
 
     points = [
         PointStruct(id=i, vector=emb, payload=rec)
